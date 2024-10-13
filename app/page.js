@@ -1,21 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Card from 'react-bootstrap/Card';
 import { basePath } from '@/next.config.mjs';
+import { Container } from 'react-bootstrap';
 
 export default function HomePage() {
-    const [cardsData, setCardsData] = useState([]);
-
-    useEffect(() => {
-        fetch(`${basePath}/homepage.json`)
-            .then(response => response.json())
-            .then(data => setCardsData(data))
-            .catch(error => console.error('Error fetching images:', error));
-    }, []);
 
     const bgStyle = {
         backgroundImage: `url(${basePath}/homepage/bg.jpg)`,
@@ -28,24 +16,7 @@ export default function HomePage() {
     return (
         <div style={bgStyle}>
             <Container>
-                <Row xs={1} md={3} className="g-4 p-3">
-                    {cardsData.map((card, idx) => (
-                        <Col key={idx}>
-                            <Card>
-                                <Card.Img variant="top" src={card.src} />
-                                {(card.title || card.date) && (
-                                    <Card.Body>
-                                        <Card.Text>
-                                            {card.title && <span>Title: {card.title}</span>}
-                                            {card.title && card.date && <br />}
-                                            {card.date && <span>Date: {card.date}</span>}
-                                        </Card.Text>
-                                    </Card.Body>
-                                )}
-                            </Card>
-                        </Col>
-                    ))}
-                </Row>
+                <h1 className="text-center text-white">Welcome to the homepage!</h1>
             </Container>
         </div>
     );

@@ -6,7 +6,7 @@ const { ExifTool } = require('exiftool-vendored');
 const isProduction = process.argv.includes('--production');
 const basePath = isProduction ? '/pandj' : '';
 
-const folders = ['turksandcaicos', 'newyork', 'homepage'];
+const folders = ['turksandcaicos', 'newyork'];
 const exiftool = new ExifTool();
 
 function formatDateToEST(dateString) {
