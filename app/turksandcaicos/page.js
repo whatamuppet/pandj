@@ -33,11 +33,15 @@ export default function TurksAndCaicos() {
                         <Col key={idx}>
                             <Card>
                                 <Card.Img variant="top" src={card.src} />
-                                <Card.Body>
-                                    <Card.Text>
-                                        {card.text}
-                                    </Card.Text>
-                                </Card.Body>
+                                {(card.title || card.date) && (
+                                    <Card.Body>
+                                        <Card.Text>
+                                            {card.title && <span>Title: {card.title}</span>}
+                                            {card.title && card.date && <br />}
+                                            {card.date && <span>Date: {card.date}</span>}
+                                        </Card.Text>
+                                    </Card.Body>
+                                )}
                             </Card>
                         </Col>
                     ))}

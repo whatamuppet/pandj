@@ -1,40 +1,83 @@
 const fs = require('fs');
 const path = require('path');
+const { ExifTool } = require('exiftool-vendored');
 
 // Check for the --production flag
 const isProduction = process.argv.includes('--production');
 const basePath = isProduction ? '/pandj' : '';
 
 const folders = ['turksandcaicos', 'newyork', 'homepage'];
+const exiftool = new ExifTool();
 
-folders.forEach(folder => {
-    const directoryPath = path.join(process.cwd(), 'public', folder);
-    const jsonPath = path.join(process.cwd(), 'public', `${folder}.json`);
+function formatDateToEST(dateString) {
+    const date = new Date(dateString);
+    const options = {
+        timeZone: 'America/New_York',
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: true
+    };
+    return date.toLocaleString('en-US', options);
+}
 
-    // Read existing JSON file if it exists
-    let existingImages = [];
-    if (fs.existsSync(jsonPath)) {
-        const existingData = fs.readFileSync(jsonPath, 'utf8');
-        existingImages = JSON.parse(existingData);
-    }
+async function getMetadata(filePath) {
+    try {
+        const metadata = await exiftool.read(filePath);
+        const title = metadata.Title || '';
+        const dateOriginal = metadata.DateTimeOriginal || metadata.CreateDate;
+        let date = '';
 
-    fs.readdir(directoryPath, (err, files) => {
-        if (err) {
-            console.error(`Failed to read directory: ${directoryPath}`, err);
-            return;
+        if (dateOriginal) {
+            date = formatDateToEST(dateOriginal);
         }
 
-        const newImages = files
-            .filter(file => /\.(jpe?g|png|gif|bmp)$/i.test(file)) // Filter image files
-            .filter(file => !/^bg\./i.test(file)) // Exclude files named bg.*
-            .map(file => ({
-                src: `${basePath}/${folder}/${file}`,
-                text: 'Caption'
-            }));
+        return { title, date };
+    } catch (error) {
+        console.error(`Failed to read metadata for file: ${filePath}`, error);
+        return { title: 'Caption', date: 'Unknown Date' };
+    }
+}
+
+async function generateJson() {
+    for (const folder of folders) {
+        const directoryPath = path.join(process.cwd(), 'public', folder);
+        const jsonPath = path.join(process.cwd(), 'public', `${folder}.json`);
+
+        // Read existing JSON file if it exists
+        let existingImages = [];
+        if (fs.existsSync(jsonPath)) {
+            const existingData = fs.readFileSync(jsonPath, 'utf8');
+            existingImages = JSON.parse(existingData);
+        }
+
+        const files = fs.readdirSync(directoryPath);
+        const newImages = [];
+
+        for (const file of files) {
+            if (/\.(jpe?g|png|gif|bmp)$/i.test(file) && !/^bg\./i.test(file)) {
+                const filePath = path.join(directoryPath, file);
+                const { title, date } = await getMetadata(filePath);
+                newImages.push({
+                    src: `${basePath}/${folder}/${file}`,
+                    title: title,
+                    date: date
+                });
+            }
+        }
 
         // Merge new images with existing images, avoiding duplicates
         const mergedImages = [...existingImages, ...newImages.filter(newImage => !existingImages.some(existingImage => existingImage.src === newImage.src))];
 
         fs.writeFileSync(jsonPath, JSON.stringify(mergedImages, null, 2));
-    });
+    }
+
+    await exiftool.end();
+}
+
+generateJson().catch(error => {
+    console.error('Error generating JSON files:', error);
 });
