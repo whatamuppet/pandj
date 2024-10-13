@@ -3,7 +3,7 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { basePath } from '../../next.config.mjs';
+import { basePath } from '@/next.config.mjs';
 
 const NavBar = () => {
     return (

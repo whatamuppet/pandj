@@ -3,8 +3,8 @@
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import styles from './page.module.css';
 import Card from 'react-bootstrap/Card';
+import { basePath } from '@/next.config.mjs';
 
 export default function TurksAndCaicos() {
 
@@ -47,8 +47,16 @@ export default function TurksAndCaicos() {
         },
     ];
 
+    const bgStyle = {
+        backgroundImage: `url(${basePath}/turksandcaicos/bg.jpg)`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        minHeight: '100vh'
+    };
+
     return (
-        <div className={styles.bg}>
+        <div style={bgStyle}>
             <Container>
                 <Row xs={1} md={3} className="g-4 p-3">
                     {cardsData.map((card, idx) => (

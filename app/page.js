@@ -3,9 +3,8 @@
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import styles from './page.module.css';
 import Card from 'react-bootstrap/Card';
-import { basePath } from '../next.config.mjs';
+import { basePath } from '@/next.config.mjs';
 
 export default function Home() {
 
