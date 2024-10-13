@@ -24,10 +24,13 @@ folders.forEach(folder => {
             return;
         }
 
-        const newImages = files.filter(file => /\.(jpe?g|png|gif|bmp)$/i.test(file)).map(file => ({
-            src: `${basePath}/${folder}/${file}`,
-            text: 'Caption'
-        }));
+        const newImages = files
+            .filter(file => /\.(jpe?g|png|gif|bmp)$/i.test(file)) // Filter image files
+            .filter(file => !/^bg\./i.test(file)) // Exclude files named bg.*
+            .map(file => ({
+                src: `${basePath}/${folder}/${file}`,
+                text: 'Caption'
+            }));
 
         // Merge new images with existing images, avoiding duplicates
         const mergedImages = [...existingImages, ...newImages.filter(newImage => !existingImages.some(existingImage => existingImage.src === newImage.src))];
