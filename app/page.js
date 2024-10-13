@@ -37,7 +37,7 @@ export default function HomePage() {
                     <Col>
                         <h1 className={styles.heading}>Our Travel Videos</h1>
                         <p className={styles.description}>
-                            Below are videos showcasing the places we've visited. Click on the videos to explore our journey.
+                            Below are videos showcasing the places we&apos;ve visited. Click on the videos to explore our journey.
                         </p>
                     </Col>
                 </Row>
