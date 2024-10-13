@@ -11,17 +11,10 @@ export default function TurksAndCaicos() {
     const [cardsData, setCardsData] = useState([]);
 
     useEffect(() => {
-        async function fetchImages() {
-            const res = await fetch(`${basePath}/api/images?folder=turksandcaicos`);
-            if (!res.ok) {
-                console.error('Failed to fetch images:', res.statusText);
-                return;
-            }
-            const data = await res.json();
-            setCardsData(data);
-        }
-    
-        fetchImages();
+        fetch(`${basePath}/api/images?folder=turksandcaicos`)
+            .then(response => response.json())
+            .then(data => setCardsData(data))
+            .catch(error => console.error('Error fetching images:', error));
     }, []);
 
     const bgStyle = {
@@ -38,8 +31,13 @@ export default function TurksAndCaicos() {
                 <Row xs={1} md={3} className="g-4 p-3">
                     {cardsData.map((card, idx) => (
                         <Col key={idx}>
-                            <Card border='dark'>
+                            <Card>
                                 <Card.Img variant="top" src={card.src} />
+                                <Card.Body>
+                                    <Card.Text>
+                                        {card.text}
+                                    </Card.Text>
+                                </Card.Body>
                             </Card>
                         </Col>
                     ))}
