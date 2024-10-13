@@ -11,7 +11,7 @@ export default function TurksAndCaicos() {
     const [cardsData, setCardsData] = useState([]);
 
     useEffect(() => {
-        fetch(`${basePath}/api/images?folder=turksandcaicos`)
+        fetch(`${basePath}/turksandcaicos.json`)
             .then(response => response.json())
             .then(data => setCardsData(data))
             .catch(error => console.error('Error fetching images:', error));
