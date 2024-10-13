@@ -15,9 +15,13 @@ export default function HomePage() {
 
     const handleVideoClick = (videoRef, setShowOverlay) => {
         if (videoRef.current) {
-            videoRef.current.currentTime = 0;
-            videoRef.current.play();
-            setShowOverlay(false);
+            if (videoRef.current.paused) {
+                videoRef.current.play();
+                setShowOverlay(false);
+            } else {
+                videoRef.current.pause();
+                setShowOverlay(true);
+            }
         }
     };
 
@@ -48,6 +52,7 @@ export default function HomePage() {
                             <video
                                 ref={videoRef1}
                                 muted
+                                onClick={() => handleVideoClick(videoRef1, setShowOverlay1)}
                                 onEnded={() => handleVideoEnd(setShowOverlay1)}
                             >
                                 <source src={`${basePath}/homepage/map_usa.webm`} type="video/webm" />
@@ -67,6 +72,7 @@ export default function HomePage() {
                             <video
                                 ref={videoRef2}
                                 muted
+                                onClick={() => handleVideoClick(videoRef2, setShowOverlay2)}
                                 onEnded={() => handleVideoEnd(setShowOverlay2)}
                             >
                                 <source src={`${basePath}/homepage/map_world.webm`} type="video/webm" />
