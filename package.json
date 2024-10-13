@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "generate-json": "node scripts/generateImageJson.js",
+    "generate-json:prod": "node scripts/generateImageJson.js --production",
     "build": "npm run generate-json && next build",
+    "build:prod": "npm run generate-json:prod && next build",
     "start": "next start",
     "lint": "next lint"
   },
