@@ -1,26 +1,26 @@
 {
-  "name": "pandj",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "generate-json": "node scripts/generateImageJson.js",
-    "generate-json:prod": "node scripts/generateImageJson.js --production",
-    "build": "npm run generate-json && next build",
-    "build:prod": "npm run generate-json:prod && next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "bootstrap": "^5.3.3",
-    "exiftool-vendored": "^28.6.0",
-    "next": "14.2.15",
-    "react": "^18",
-    "react-bootstrap": "^2.10.5",
-    "react-dom": "^18"
-  },
-  "devDependencies": {
-    "eslint": "^8",
-    "eslint-config-next": "14.2.15"
-  }
+    "name": "pandj",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "generate-json": "node scripts/generateImageJson.js",
+        "generate-json:prod": "node scripts/generateImageJson.js --production",
+        "build": "npm run generate-json && next build",
+        "build:prod": "npm run generate-json:prod && next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "bootstrap": "^5.3.3",
+        "exiftool-vendored": "^28.6.0",
+        "next": "14.2.15",
+        "react": "^18",
+        "react-bootstrap": "^2.10.5",
+        "react-dom": "^18"
+    },
+    "devDependencies": {
+        "eslint": "^8",
+        "eslint-config-next": "14.2.15"
+    }
 }
