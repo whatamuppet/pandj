@@ -10,41 +10,45 @@ export default function TurksAndCaicos() {
 
     const cardsData = [
         {
-            src: "homepage/1.png",
+            src: "turksandcaicos/IMG_6976.jpeg",
             text: "Caption"
         },
         {
-            src: "homepage/1.png",
+            src: "turksandcaicos/IMG_6977.jpeg",
             text: "Caption"
         },
         {
-            src: "homepage/1.png",
+            src: "turksandcaicos/IMG_6978.jpeg",
             text: "Caption"
         },
         {
-            src: "homepage/1.png",
+            src: "turksandcaicos/IMG_6979.jpeg",
             text: "Caption"
         },
         {
-            src: "homepage/1.png",
+            src: "turksandcaicos/IMG_6980.jpeg",
             text: "Caption"
         },
         {
-            src: "homepage/1.png",
+            src: "turksandcaicos/IMG_6981.jpeg",
             text: "Caption"
         },
         {
-            src: "homepage/1.png",
+            src: "turksandcaicos/IMG_6982.jpeg",
             text: "Caption"
         },
         {
-            src: "homepage/1.png",
+            src: "turksandcaicos/IMG_6983.jpeg",
             text: "Caption"
         },
         {
-            src: "homepage/1.png",
+            src: "turksandcaicos/IMG_6984.jpeg",
             text: "Caption"
         },
+        {
+            src: "turksandcaicos/IMG_6985.jpeg",
+            text: "Caption"
+        }
     ];
 
     const bgStyle = {
