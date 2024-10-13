@@ -1,8 +1,8 @@
-// scripts/generateImageJson.js
 const fs = require('fs');
 const path = require('path');
 
 const folders = ['turksandcaicos', 'newyork', 'homepage'];
+const basePath = process.env.NODE_ENV === 'production' ? '/pandj' : '';
 
 folders.forEach(folder => {
     const directoryPath = path.join(process.cwd(), 'public', folder);
@@ -12,7 +12,7 @@ folders.forEach(folder => {
             return;
         }
         const images = files.filter(file => /\.(jpe?g|png|gif|bmp)$/i.test(file)).map(file => ({
-            src: `${process.env.NODE_ENV === 'production' ? '/pandj' : ''}/${folder}/${file}`,
+            src: `${basePath}/${folder}/${file}`,
             text: 'Caption'
         }));
         const jsonPath = path.join(process.cwd(), 'public', `${folder}.json`);
