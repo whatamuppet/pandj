@@ -8,11 +8,11 @@ const NavBar = () => {
     return (
         <Navbar bg="dark" data-bs-theme="dark">
             <Container>
-                <Navbar.Brand href="/">P and J</Navbar.Brand>
+                <Navbar.Brand href="/pandj/">P and J</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/turksandcaicos">Turks and Caicos</Nav.Link>
-                    <Nav.Link href="/newyork">New York</Nav.Link>
+                    <Nav.Link href="/pandj">Home</Nav.Link>
+                    <Nav.Link href="/pandj/turksandcaicos">Turks and Caicos</Nav.Link>
+                    <Nav.Link href="/pandj/newyork">New York</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
