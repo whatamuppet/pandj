@@ -7,7 +7,7 @@ import { basePath } from '@/next.config.mjs';
 
 const NavBar = () => {
     return (
-        <Navbar bg="dark" data-bs-theme="dark">
+        <Navbar bg="dark" data-bs-theme="dark" className='border-bottom border-info border-2'>
             <Container>
                 <Navbar.Brand className='text-info' href={`${basePath}/`}>P and J</Navbar.Brand>
                 <Nav className="me-auto">
