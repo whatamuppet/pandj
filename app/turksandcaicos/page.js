@@ -22,7 +22,7 @@ export default function TurksAndCaicos() {
             <Row xs={1} md={3} className="g-4 p-3">
                 {cardsData.map((card, idx) => (
                     <Col key={idx}>
-                        <Card>
+                        <Card bg='dark' border='info' className='text-white'>
                             <Card.Img variant="top" src={card.src} />
                             {(card.title || card.date) && (
                                 <Card.Body>

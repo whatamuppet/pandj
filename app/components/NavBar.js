@@ -9,11 +9,11 @@ const NavBar = () => {
     return (
         <Navbar bg="dark" data-bs-theme="dark">
             <Container>
-                <Navbar.Brand href={`${basePath}/`}>P and J</Navbar.Brand>
+                <Navbar.Brand className='text-info' href={`${basePath}/`}>P and J</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href={`${basePath}/`}>Home</Nav.Link>
-                    <Nav.Link href={`${basePath}/turksandcaicos`}>Turks and Caicos</Nav.Link>
-                    <Nav.Link href={`${basePath}/newyork`}>New York</Nav.Link>
+                    <Nav.Link className='text-white' href={`${basePath}/`}>Home</Nav.Link>
+                    <Nav.Link className='text-white' href={`${basePath}/turksandcaicos`}>Turks and Caicos</Nav.Link>
+                    <Nav.Link className='text-white' href={`${basePath}/newyork`}>New York</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
