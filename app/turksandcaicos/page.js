@@ -40,12 +40,14 @@ export default function TurksAndCaicos() {
     }
 
     return (
-        <Container>
-            <Alert className='text-center fs-2 my-4' variant='primary'>
+        <Container className='my-4'>
+            <Alert className='text-center fs-2' variant='primary'>
                 Turks and Caicos
             </Alert>
-            <Pagination>{items}</Pagination>
-            <Row xs={1} md={3} className="g-4 mb-4">
+            <div className="d-flex justify-content-end">
+                <Pagination className='mb-3'>{items}</Pagination>
+            </div>
+            <Row xs={1} md={3} className="g-4">
                 {currentItems.map((card, idx) => (
                     <Col key={idx}>
                         <Card bg='dark' border='white' className='text-white border-2'>
@@ -63,6 +65,9 @@ export default function TurksAndCaicos() {
                     </Col>
                 ))}
             </Row>
+            <div className="d-flex justify-content-end mt-3">
+                <Pagination>{items}</Pagination>
+            </div>
         </Container>
     );
 }
