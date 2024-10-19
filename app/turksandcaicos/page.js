@@ -42,7 +42,7 @@ export default function TurksAndCaicos() {
     return (
         <Container className='my-4'>
             <Alert className='text-center fs-2' variant='primary'>
-                Turks and Caicos
+                Turks and Caicos Islands
             </Alert>
             <div className="d-flex justify-content-end">
                 <Pagination className='mb-3'>{items}</Pagination>
