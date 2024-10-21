@@ -3,5 +3,5 @@
 import Gallery from "../components/Gallery";
 
 export default function washingtondcdaytrip() {
-    return <Gallery jsonFilePath="washingtondcdaytrip.json" pageTitle="Day Trip 2023" />;
+    return <Gallery jsonFilePath="json/washingtondcdaytrip.json" pageTitle="Day Trip 2023" />;
 }

@@ -53,8 +53,17 @@ export default function Gallery({ jsonFilePath, pageTitle }) {
                 {currentItems.map((card, idx) => (
                     <Col key={idx}>
                         <Card bg='dark' border='white' className='text-white border-2'>
-                            <Card.Img variant="top" src={card.src} />
-                            {(card.title || card.date) && (
+                            {/\.(mp4|mov)$/i.test(card.src) ? (
+                                <Card.Body>
+                                    <video controls className="w-100">
+                                        <source src={card.src} type={card.src.endsWith('.mov') ? 'video/quicktime' : 'video/mp4'} />
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </Card.Body>
+                            ) : (
+                                <Card.Img variant="top" src={card.src} />
+                            )}
+                            {(card.title || (card.date && card.date !== 'Invalid Date')) && (
                                 <Card.Body>
                                     <Card.Text>
                                         {card.title && <span>Title: {card.title}</span>}
