@@ -38,14 +38,19 @@ async function getMetadata(filePath) {
         return { title, date };
     } catch (error) {
         console.error(`Failed to read metadata for file: ${filePath}`, error);
-        return { title: 'Caption', date: 'Unknown Date' };
+        return { title: 'Caption', date: '' };
     }
 }
 
 async function generateJson() {
     for (const folder of folders) {
         const directoryPath = path.join(process.cwd(), 'public', folder);
-        const jsonPath = path.join(process.cwd(), 'public', `${folder}.json`);
+        const jsonPath = path.join(process.cwd(), 'public', 'json', `${folder}.json`);
+
+        // Ensure the json directory exists
+        if (!fs.existsSync(path.join(process.cwd(), 'public', 'json'))) {
+            fs.mkdirSync(path.join(process.cwd(), 'public', 'json'), { recursive: true });
+        }
 
         // Read existing JSON file if it exists
         let existingImages = [];
@@ -58,7 +63,7 @@ async function generateJson() {
         const newImages = [];
 
         for (const file of files) {
-            if (/\.(jpe?g|png|gif|bmp)$/i.test(file) && !/^bg\./i.test(file)) {
+            if (/\.(jpe?g|png|gif|bmp|mp4|mov)$/i.test(file) && !/^bg\./i.test(file)) {
                 const filePath = path.join(directoryPath, file);
                 const { title, date } = await getMetadata(filePath);
                 newImages.push({
